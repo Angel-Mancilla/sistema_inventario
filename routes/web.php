@@ -7,6 +7,7 @@ Route::get('/', function () {
 });
 
 //incorrecto debo hacer la vista con un controlador porque debe ejecutar instantaneamente el metodo index para ver productos
-Route::view('inventario','inventario.index')->name('inventario.index');
+Route::view('inventario','inventario.dashboard')->name('inventario.dashboard');
 
-Route::
+
+
