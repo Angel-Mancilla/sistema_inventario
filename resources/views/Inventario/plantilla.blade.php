@@ -28,14 +28,14 @@
                         <li><a href="#" class="text-white">Almacen</a></li>
                         <li><a href="#" class="text-white">Articulo</a></li>
                         <li><a href="#" class="text-white">Categoria</a></li>
-                        <li><a href="#" class="text-white">Grupo</a></li>
+                        <li><a href="{{route('grupo.index')}}" class="text-white">Grupo</a></li>
                         
                         <li><a href="#" class="text-white">Salir</a></li>
                         
                     </ul>
                 </div>
             </aside>
-            <section class="w-full bg-gray-500">
+            <section class="w-full bg-gray-200">
 
 
                 @yield('seccion-central')

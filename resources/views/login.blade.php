@@ -24,7 +24,7 @@
 
 
                 </form>
-                <a href="{{route('inventario.index')}}">Entrar</a>
+                <a href="{{route('inventario.dashboard')}}">Entrar</a>
             </div>
     </div>
 @endsection

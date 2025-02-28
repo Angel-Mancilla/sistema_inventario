@@ -3,6 +3,6 @@
 
 @section('seccion-central')
 
-    <h1>hola soy index estoy </h1>
+    <h1>hola soy index 1 </h1>
 
 @endsection
