@@ -60,9 +60,14 @@ class GrupoController extends Controller
 
     ]);
 
-    $grupo->update($request->all());
+    $grupo->update([
+        'descripcion' => $request->input('descripcion'),
+        'estado' => $request->boolean('estado')
 
-    return redirect()->route('grupo.index');
+
+    ]);
+
+    return redirect()->route('grupo.index')->with('Succes','Grupo actualizado correctamente');
 
    }
 

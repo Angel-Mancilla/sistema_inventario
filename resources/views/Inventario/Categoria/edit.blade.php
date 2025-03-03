@@ -9,24 +9,24 @@
 
 
     <div>
-        <h1 class="text-green-800 font-bold px-4">Editar Marca</h1>
+        <h1 class="text-green-800 font-bold px-4">Editar Categoria</h1>
 
     </div>
     <br>
-    <form action="{{route('grupo.update',$grupo)}}" method="POST" class="p-3 max-w-min bg-neutral-600 backdrop-blur-sm shadow-md border rounded border-none">
+    <form action="{{route('categoria.update',$categoria)}}" method="POST" class="p-3 max-w-min bg-neutral-600 backdrop-blur-sm shadow-md border rounded border-none">
         @csrf
         @method('put')
         <label for="" class="font-bold">
             <span class="text-blue-100">Editar la marca:</span>
             <br>
-            <input type="text" name="descripcion"  value="{{old('descripcion',$grupo->descripcion)}}" class="border border-2 rounded-md bg-fuchsia-100 border-sky-400 outline-none">
+            <input type="text" name="descripcion"  value="{{old('descripcion',$categoria->descripcion)}}" class=" border-2 rounded-md bg-fuchsia-100 border-sky-400 outline-none">
             
         </label>
         <br><br>
         <label for="" class="text-blue-100 font-bold">
             <span class="text-blue-100">Estado:</span> 
             <br> 
-            @if($grupo->estado)
+            @if($categoria->estado)
                <span class="text-green-500"> Activo </span>
             @else
                 <span class="text-red-500"> Inactivo </span>
@@ -44,7 +44,7 @@
         <br><br>
         
         <button class="bg-emerald-800 border rounded p-2 font-bold text-white  hover:bg-green-300 duration-200" type="submit"> Guardar cambios </button>
-        <a type="button" href="{{route('grupo.index')}}" class="bg-red-600 border rounded p-2 font-bold text-white  hover:bg-red-400 duration-200">cancel</a>
+        <a type="button" href="{{route('categoria.index')}}" class="bg-red-600 border rounded p-2 font-bold text-white  hover:bg-red-400 duration-200">cancel</a>
 
 
     </form>
