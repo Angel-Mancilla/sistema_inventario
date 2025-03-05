@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('articulos', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion');
-            $table->foreignId('categoria_id')->constrained('categorias');
-            $table->foreignId('grupo_id')->constrained('grupos');
+            $table->foreignId('categoria_id')->constrained('categorias')->onDelete('restrict');
+            $table->foreignId('grupo_id')->constrained('grupos')->onDelete('restrict');
             $table->unsignedInteger('stock');
             $table->boolean('estado');
             $table->timestamps();

@@ -14,8 +14,8 @@
                 <a href="{{route('categoria.create')}}" class="p-1 border border-gray-500 rounded bg-emerald-400 hover:bg-emerald-300"><span class="text-gray-500 font-stretch-50%">Añadir</span></a>
     
             </div>
-            <table class="min-w-full table-auto bg-white border border-gray-300">
-                <thead class="bg-slate-700 border-solid rounded">
+            <table class="min-w-full table-auto bg-white border border-gray-300 border-t-4  rounded-lg overflow-hidden">
+                <thead class="bg-gradient-to-b from-purple-500  to-neutral-800 text-gray-300 border-solid rounded">
                     <tr >
                         <th class="py-2 px-4 border-b">Id</th>
                         <th class="py-2 px-4 border-b max-w-md">Categoria</th>
