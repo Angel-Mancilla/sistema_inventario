@@ -28,4 +28,10 @@ class Categoria extends Model
 
 
     }
+
+    public function scopeActivas($query){
+
+        return $query->where('estado','1');
+
+    }
 }

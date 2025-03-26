@@ -15,7 +15,7 @@
     
             </div>
             <table class="min-w-full table-auto bg-white border  border-gray-300 border-t-4  rounded-lg overflow-hidden">
-                <thead class="bg-gradient-to-b from-purple-500  to-neutral-800 text-gray-300 border-solid rounded ">
+                <thead class="bg-blue-600 text-gray-300 border-solid rounded ">
                     <tr >
                         <th class="py-2 px-4 border-b">Id</th>
                         <th class="py-2 px-4 border-b max-w-md">Nombre del producto</th>

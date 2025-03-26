@@ -26,4 +26,9 @@ class Grupo extends Model
         return $this->hasMany(Articulo::class);//Un grupo tiene muchos articulos
 
     }
+
+    public function scopeActivas($query){
+
+        return $query->where('estado','1');
+    }
 }

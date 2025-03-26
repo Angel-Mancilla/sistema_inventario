@@ -13,19 +13,14 @@ Route::get('/', function () {
 })->middleware('guest')->name('login');
 
 Route::get('/registrate', function(){
-
     return view('registrate');
-
 })->middleware('guest')->name('registrate');
-
 
 //incorrecto debo hacer la vista con un controlador porque debe ejecutar instantaneamente el metodo index para ver productos
 
-
 Route::middleware(['auth'])->group(function(){
-
+    Route::get('logout',[LoginController::class, 'logout'])->name('logout');
     Route::view('inventario','inventario.dashboard')->name('inventario.dashboard');
-        
     Route::controller(GrupoController::class)->group(function(){
         Route::get('inventario/grupo', 'index')->name('grupo.index');
         Route::get('inventario/grupo/create', 'create')->name('grupo.create');
@@ -33,8 +28,6 @@ Route::middleware(['auth'])->group(function(){
         Route::get('inventario/grupo/{grupo}','edit')->name('grupo.edit');
         Route::put('inventario/grupo/{grupo}', 'update' )->name('grupo.update');
         Route::delete('inventario/grupo/{grupo}', 'destroy')->name('grupo.destroy');
-
-
     });
 
     Route::controller(CategoriaController::class)->group(function(){
@@ -44,9 +37,7 @@ Route::middleware(['auth'])->group(function(){
         Route::get('inventario/categoria/{categoria}/edit', 'edit')->name('categoria.edit');
         Route::put('inventario/categoria/{categoria}', 'update')->name('categoria.update');//lugar donde se procesara la actualizacion , es aca donde tengo la colleccion, pasamos la referencia
         Route::delete('inventario/categoria/{categoria}', 'destroy')->name('categoria.destroy');
-        
     });
-
 
     Route::controller(ArticuloController::class)->group(function(){
         Route::get('inventario/articulo', 'index')->name('articulo.index');
@@ -56,18 +47,12 @@ Route::middleware(['auth'])->group(function(){
         Route::put('inventario/articulo/{articulo}', 'update')->name('articulo.update');
         Route::delete('inventario/articulo/{articulo}', 'destroy')->name('articulo.destroy');
     });
-
-
-
 });
 
-
-Route::controller(LoginController::class)->group(function(){
-
-    Route::post('registrate', 'register')->name('registrate.register');
-    Route::post('login', 'login')->name('login.login');
-    Route::get('logout','logout')->name('logout');
-
-
-
+Route::middleware('guest')->group(function(){
+    Route::controller(LoginController::class)->group(function(){
+        Route::post('registrate', 'register')->name('registrate.register');
+        Route::post('login', 'login')->name('login.login');
+        
+    });
 });

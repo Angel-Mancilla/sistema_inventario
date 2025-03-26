@@ -2,90 +2,49 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCategoriaRequest;
+use App\Http\Requests\UpdateCategoriaRequest;
 use App\Models\Categoria;
+use App\Services\CategoriaService;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
 {
-    //
+    protected CategoriaService $categoriaService;
 
+    public function __construct(CategoriaService $categoriaService)
+    {
+        $this->categoriaService = $categoriaService;
+    }
 
     public function index(){
-
-        $categorias = Categoria::orderby('id')->paginate();
-
+        $categorias = $this->categoriaService->getAllCategorias();
         return view('inventario.categoria.index', compact('categorias'));
-
     }
-
 
     public function create(){
-
-
         return view('inventario.categoria.create');
-
     }
 
-    public function store(Request $request){
-        
-        $request->validate([
-            'descripcion' => 'required|string|max:255|not_regex:/<[^>]*>/',
-            'estado' => 'required|in:0,1|'
-
-
-
-        ]);
-
-
-        $categoria = Categoria::create([
-            'descripcion' => $request->input('descripcion'),
-            'estado' => $request->boolean('estado')
-
-        ]);
-
+    public function store(StoreCategoriaRequest $request){  
+        $requestValidated = $request->validated();
+        $this->categoriaService->createCategoria($requestValidated);
         return redirect()->route('categoria.index');
-
     }
-
 
     public function edit(Categoria $categoria){
-
-
         return view('inventario.categoria.edit', compact('categoria'));
-
-
     }
 
-
-    public function update(Request $request, Categoria $categoria){
-        $request->validate([
-            'descripcion' => 'required|string|max:255|not_regex:/<[^>]*>/',
-            'estado' => 'required|in:0,1'
-
-
-        ]);
-
-
-        $categoria->update([
-            'descripcion' => $request->input('descripcion'),
-            'estado' => $request->boolean('estado')
-
-
-        ]);
-
+    public function update(UpdateCategoriaRequest $request, Categoria $categoria){
+        $requestValidated = $request->validated();
+        $this->categoriaService->updateCategoria($categoria, $requestValidated);
         return redirect()->route('categoria.index')->with('success','Categoria se ha actualizado correctamente');
-        
-
     }
-
+    
     public function destroy(Categoria $categoria){
-
-        $categoria->delete();
-
-
+        $this->categoriaService->deleteCategoria($categoria);
         return redirect()->route('categoria.index');
-
     }
-
 }

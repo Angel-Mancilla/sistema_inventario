@@ -2,82 +2,52 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreGrupoRequest;
+use App\Http\Requests\UpdateGrupoRequest;
 use App\Models\Grupo;
+use App\Services\GrupoService;
 use Illuminate\Http\Request;
 
 class GrupoController extends Controller
 {
-    //
+    protected GrupoService $grupoService;
 
-    public function index(Grupo $grupos){
+    public function __construct(GrupoService $grupoService)
+    {
+        $this->grupoService = $grupoService;
+    }
 
-        // $grupos->orderby('id')->paginate();
-        $grupos = Grupo::orderBy('id')->paginate();
+    public function index(){
+        $grupos = $this->grupoService->getAllGrupos();
         return view('inventario.grupo.index', compact('grupos'));
-
-
-
     }
 
     public function create(){
-
         return view('inventario.grupo.create');
-
     }
 
+    public function store(StoreGrupoRequest $request){
+        $requestValidated = $request->validated();
 
-    public function store(Request $request){
-
-        $request->validate([
-            'descripcion' => 'required|string|max:255|not_regex:/<[^>]*>/',
-            'estado' => 'required|in:0,1'
-
-
-        ]);
-
-        $grupo = Grupo::create([
-            'descripcion' => $request->input('descripcion'),
-            'estado' => $request->boolean('estado') // Convierte "1" a true y "0" a false
-        ]);
-
+    
+       $this->grupoService->createGrupo($requestValidated);
         return redirect()->route('grupo.index');
 
     }
 
     public function edit(Grupo $grupo){
-
         return view('inventario.grupo.edit',compact('grupo'));
-
-
     }
 
-   public function update(Request $request, Grupo $grupo){
+   public function update(UpdateGrupoRequest $request, Grupo $grupo){
+    $requestValidated = $request->validated();
 
-    $request->validate([
-        'descripcion' => 'required|string|max:255|not_regex:/<[^>]*>/',
-        'estado' => 'required|in:0,1'
-
-
-    ]);
-
-    $grupo->update([
-        'descripcion' => $request->input('descripcion'),
-        'estado' => $request->boolean('estado')
-
-
-    ]);
-
-    return redirect()->route('grupo.index')->with('Succes','Grupo actualizado correctamente');
-
+   $this->grupoService->updateGrupo($grupo, $requestValidated);
+    return redirect()->route('grupo.index')->with('success','Grupo actualizado correctamente');
    }
 
    public function destroy(Grupo $grupo){
-
-    $grupo->delete();
-
+    $this->grupoService->deleteGrupo($grupo);
     return redirect()->route('grupo.index');
-
-
-
    }
 }
