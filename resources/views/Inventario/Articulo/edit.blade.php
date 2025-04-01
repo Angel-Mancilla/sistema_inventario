@@ -21,6 +21,9 @@
             <textarea  name="descripcion"   rows="5" cols="50" class="border-2 rounded-md font-medium bg-fuchsia-100 border-sky-400 outline-none overflow-y-auto resize-none">{{old('descripcion',$articulo->descripcion)}}</textarea>
             
         </label>
+        @error('descripcion')
+            <p class="text-red-500">{{$message}}</p>
+        @enderror
         <br><br>
         
 
@@ -41,6 +44,9 @@
             
 
         </label>
+        @error('categoria_id')
+            <p class="text-red-500">{{$message}}</p>
+        @enderror
         <br><br>
 
 
@@ -58,6 +64,9 @@
 
             </select>
         </label>
+        @error('grupo_id')
+            <p class="text-red-500">{{$message}}</p>
+        @enderror
         <br><br>
         <label for="" class="font-bold">
             <span class="text-blue-100">Stock: </span>
@@ -65,6 +74,9 @@
             <input type="number" name="stock"  value="{{old('stock',$articulo->stock)}}" min="0"  class="border border-2 rounded-md bg-fuchsia-100 border-sky-400 outline-none">
             
         </label>
+        @error('stock')
+            <p class="text-red-500">{{$message}}</p>
+        @enderror
         <br><br>
 
 
@@ -77,6 +89,9 @@
                 <option value="0" {{ old('estado',$articulo->estado) == 'false' ? 'selected' : '' }}>Inactivo</option>
             </select>
         </label>
+        @error('estado')
+            <p class="text-red-500">{{$message}}</p>
+        @enderror
         <br><br>
         
         <button class="bg-emerald-800 border rounded p-2 font-bold text-white  hover:bg-green-300 duration-200" type="submit"> add </button>

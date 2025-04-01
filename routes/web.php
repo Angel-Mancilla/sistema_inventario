@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Models\Grupo;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\EnsureUserHasRole;
 
 Route::get('/', function () {
     return view('login');
@@ -20,7 +21,7 @@ Route::get('/registrate', function(){
 
 Route::middleware(['auth'])->group(function(){
     Route::get('logout',[LoginController::class, 'logout'])->name('logout');
-    Route::view('inventario','inventario.dashboard')->name('inventario.dashboard');
+    Route::view('inventario','inventario.dashboard')->middleware('rol:admin')->name('inventario.dashboard');
     Route::controller(GrupoController::class)->group(function(){
         Route::get('inventario/grupo', 'index')->name('grupo.index');
         Route::get('inventario/grupo/create', 'create')->name('grupo.create');

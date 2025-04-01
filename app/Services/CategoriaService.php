@@ -25,11 +25,24 @@ public function deleteCategoria(Categoria $categoria){
 }
 
 public function createCategoria(array $requestValidated){
-    return $this->categoriaRepository->createCategoria($requestValidated);
+
+    $categoriaExistente = $this->categoriaRepository->existsCategoria($requestValidated['descripcion']);
+
+    if(!$categoriaExistente){
+        return $this->categoriaRepository->createCategoria($requestValidated);
+    }
 }
 
 public function updateCategoria(Categoria $categoria, array $requestValidated){
-    return $this->categoriaRepository->updateCategoria($categoria, $requestValidated);
+
+    $categoriaExistente = $this->categoriaRepository->existsCategoria($requestValidated['descripcion']);
+
+    if($categoriaExistente && $categoriaExistente->id === $categoria->id){
+        return $this->categoriaRepository->updateCategoria($categoria, $requestValidated);
+    }
+
+   
 }
+
 
 }

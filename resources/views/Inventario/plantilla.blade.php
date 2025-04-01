@@ -35,7 +35,7 @@
                     </ul>
                 </div>
             </aside>
-            <section class="w-full  bg-neutral-400">
+            <section class="w-full  bg-neutral-300">
 
 
                 @yield('seccion-central')

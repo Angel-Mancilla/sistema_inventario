@@ -20,6 +20,9 @@
             <input type="text" name="descripcion"  value="{{old('descripcion')}}" class="border border-2 rounded-md bg-fuchsia-100 border-sky-400 outline-none">
             
         </label>
+        @error('descripcion')
+            <p class="text-red-500">{{$message}}</p>
+        @enderror
         <br><br>
         <label for="" class="text-blue-100 font-bold">
             <span class="text-blue-100">Estado:</span> 
@@ -29,6 +32,9 @@
                 <option value="0" {{ old('estado') == 'false' ? 'selected' : '' }}>Inactivo</option>
             </select>
         </label>
+        @error('estado')
+            <p class="text-red-500">{{$message}}</p>
+        @enderror
         <br><br>
         
         <button class="bg-emerald-800 border rounded p-2 font-bold text-white  hover:bg-green-300 duration-200" type="submit"> add </button>

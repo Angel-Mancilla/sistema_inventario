@@ -35,4 +35,9 @@ class CategoriaRepository implements CategoriaRepositoryInterface{
             'estado' => $requestValidated['estado'] ?? false, 
         ]);
     }
+
+    public function existsCategoria(string $descripcion)
+    {
+        return Categoria::where('descripcion',$descripcion)->first();
+    }
 }

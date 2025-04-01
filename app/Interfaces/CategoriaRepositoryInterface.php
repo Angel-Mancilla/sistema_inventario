@@ -12,7 +12,7 @@ interface CategoriaRepositoryInterface{
     public function deleteCategoria(Categoria $categoria);
     public function createCategoria(array $requestValidated);
     public function updateCategoria(Categoria $categoria,array $requestValidated);
-
+    public function existsCategoria(string $descripcion);
 
 
 }

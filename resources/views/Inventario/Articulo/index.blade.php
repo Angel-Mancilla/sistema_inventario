@@ -1,11 +1,20 @@
 @extends('inventario.plantilla')
 
 @section('seccion-central')
+
         @if (session('success'))
             <div id="alerta" class="bg-green-500 text-white p-4 rounded mb-4 duration-200">
                 {{ session('success') }}
             </div>
         @endif
+
+        @if (session('error'))
+            <div class="bg-red-500 text-white p-4 rounded mb-4 duration-200">
+                {{session('error')}};
+            </div>
+        @endif
+
+        
   
         <main class="container  w-11/12  mx-auto p-4 ">
             <h1 class="text-blue-800 font-bold px-4">Articulos</h1>
@@ -70,8 +79,9 @@
     
                 </tbody>
             </table>
+            <br>
             <div class="mb-4">
-                {{-- {{ $grupos->links() }} --}}
+                {{ $articulos->links() }}
             </div>
             
             <script>
