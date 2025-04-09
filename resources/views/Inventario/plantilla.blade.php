@@ -7,15 +7,18 @@
 {{-- container  mx-auto px-4  --}}
     <main> 
         <header class="w-full bg-neutral-800">
-            <div class="w-full max-w-screen-xl px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+            <div class="w-full  px-4 sm:px-6 lg:px-8 flex items-center justify-between">
                 <h1 class="text-white text-lg font-semibold">SGI CTS</h1>
+                @can('view-admin')
                 <nav>
                     <ul class="flex space-x-4">
-                        <li><a href="#" class="text-white"></a></li>
+                        <li><a href="#" class="text-white">holooo</a></li>
                         <li><a href="#" class="text-white">notificacion</a></li>
                         <li><a href="#" class="text-white">Almacen</a></li>
                     </ul>
                 </nav>
+                @endcan
+                
             </div>
         </header>
         <div class="flex">
@@ -24,8 +27,13 @@
                     <h1 class="text-white text-lg font-semibold">Bienvenido: {{Auth::user()->name}} </h1>
                     <hr class="w-full rounded-2xl border-2 border-solid border-gray-100 mb-5">
                     <ul class="space-y-2">
+                        @can('view-admin')
+                        <li><a href="{{route('usuario.index')}}" class="text-white">Usuarios</a></li>    
                         <li><a href="#" class="text-white">Dashboard</a></li>
                         <li><a href="#" class="text-white">Almacen</a></li>
+                        @endcan
+                        
+                        
                         <li><a href="{{route('articulo.index')}}" class="text-white">Articulo</a></li>
                         <li><a href="{{route('categoria.index')}}" class="text-white">Categoria</a></li>
                         <li><a href="{{route('grupo.index')}}" class="text-white">Grupo</a></li>

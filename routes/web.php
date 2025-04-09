@@ -4,6 +4,7 @@ use App\Http\Controllers\ArticuloController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\GrupoController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 use App\Models\Grupo;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
@@ -39,7 +40,7 @@ Route::middleware(['auth'])->group(function(){
         Route::put('inventario/categoria/{categoria}', 'update')->name('categoria.update');//lugar donde se procesara la actualizacion , es aca donde tengo la colleccion, pasamos la referencia
         Route::delete('inventario/categoria/{categoria}', 'destroy')->name('categoria.destroy');
     });
-
+    
     Route::controller(ArticuloController::class)->group(function(){
         Route::get('inventario/articulo', 'index')->name('articulo.index');
         Route::get('inventario/articulo/create', 'create')->name('articulo.create');
@@ -48,6 +49,16 @@ Route::middleware(['auth'])->group(function(){
         Route::put('inventario/articulo/{articulo}', 'update')->name('articulo.update');
         Route::delete('inventario/articulo/{articulo}', 'destroy')->name('articulo.destroy');
     });
+    Route::middleware('rol:admin')->group(function(){
+        Route::controller(UserController::class)->group(function(){
+            Route::get('inventario/usuario','index')->name('usuario.index');
+            Route::get('inventario/usuario/create', 'create')->name('usuario.create');
+            Route::post('inventario/usuario','store')->name('usuario.store');
+            Route::get('inventario/usuario/{user}/edit', 'edit')->name('usuario.edit');
+            Route::put('inventario/usuario/{user}','update')->name('usuario.update');
+        });
+    });
+    
 });
 
 Route::middleware('guest')->group(function(){

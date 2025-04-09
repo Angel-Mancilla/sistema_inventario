@@ -18,11 +18,16 @@
   
         <main class="container  w-11/12  mx-auto p-4 ">
             <h1 class="text-blue-800 font-bold px-4">Articulos</h1>
+          
             <div class="flex justify-self-end p-2">
     
                 <a href="{{route('articulo.create')}}" class="p-1 border border-gray-500 rounded bg-emerald-400 hover:bg-emerald-300"><span class="text-gray-500 font-stretch-50%">Añadir</span></a>
     
             </div>
+                
+            
+            {{-- <div class="overflow-x-auto w-full"> --}}
+                {{-- min-w-[1000px] --}}
             <table class="min-w-full table-auto bg-white border  border-gray-300 border-t-4  rounded-lg overflow-hidden">
                 <thead class="bg-blue-600 text-gray-300 border-solid rounded ">
                     <tr >
@@ -79,6 +84,7 @@
     
                 </tbody>
             </table>
+            {{-- </div> --}}
             <br>
             <div class="mb-4">
                 {{ $articulos->links() }}
