@@ -70,6 +70,19 @@ class UserService{
         
 
     }
+    public function updateEstado(User $user, array $requestValidated){
+        
+        
+        $hasEstado= (bool)$requestValidated['estado'];
+        
+         $dataToUpdate = [
+            'estado' => $hasEstado,
+         ];
+         
+        return $this->userRepository->updateEstado($user, $dataToUpdate);
+
+        
+    }
 
     public function deleteUser(User $user){
         try {

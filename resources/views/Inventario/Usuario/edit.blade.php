@@ -14,7 +14,7 @@
     <br>
     <form action="{{route('usuario.update',$user)}}" method="POST" class="p-3 max-w-min bg-neutral-600 backdrop-blur-sm shadow-md border rounded border-none">
         @csrf
-        @method('put')
+        @method('patch')
         <label for="" class="font-bold">
             <span class="text-blue-100">Nombre del usuario:</span>
             <br>

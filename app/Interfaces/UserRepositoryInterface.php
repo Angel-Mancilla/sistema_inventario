@@ -12,7 +12,7 @@ interface UserRepositoryInterface{
     public function deleteUser(User $user);
     public function createUser( array $requestValidated);
     public function updateUser(User $user, array $requestValidated);
-    
+    public function updateEstado(User $user, array $dataToUpdate);
     
 
 }

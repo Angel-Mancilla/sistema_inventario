@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateEstadoRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use App\Services\UserService;
@@ -53,6 +54,13 @@ class UserController extends Controller
         $this->userService->updateUser($user, $requestValidated);
         return redirect()->route('usuario.index');
 
+    }
+
+    public function updateEstado(User $user, UpdateEstadoRequest $request){
+        Gate::authorize('updateEstado',$user);
+        $requestValidated = $request->validated();
+        $this->userService->updateEstado($user, $requestValidated);
+        return redirect()->route('usuario.index');
     }
 
     public function destroy(){

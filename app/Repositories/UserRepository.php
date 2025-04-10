@@ -10,7 +10,7 @@ class UserRepository implements UserRepositoryInterface{
 
   public function getAllUsers()
   {
-    return User::select(['id','name','email','role_id'])->with('role')->orderby('id')->paginate();
+    return User::select(['id','name','email','role_id','estado'])->with('role')->orderby('id')->paginate();
   }
 
   public function getUserById(User $user)
@@ -48,6 +48,11 @@ class UserRepository implements UserRepositoryInterface{
         
 
     // ]);
+  }
+
+  public function updateEstado(User $user,array $dataToUpdate)
+  {
+    return $user->update($dataToUpdate);
   }
 
 

@@ -11,11 +11,11 @@
                 <h1 class="text-white text-lg font-semibold">SGI CTS</h1>
                 @can('view-admin')
                 <nav>
-                    <ul class="flex space-x-4">
+                    {{-- <ul class="flex space-x-4">
                         <li><a href="#" class="text-white">holooo</a></li>
                         <li><a href="#" class="text-white">notificacion</a></li>
                         <li><a href="#" class="text-white">Almacen</a></li>
-                    </ul>
+                    </ul> --}}
                 </nav>
                 @endcan
                 

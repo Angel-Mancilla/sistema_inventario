@@ -8,15 +8,20 @@
                 
                 {{-- bg-gradient-to-r from-neutral-900 to-purple-900 --}}
             </div>
+            @error('email')
+                <div class="text-center bg-white/10 backdrop-blur-sm">
+                    <span class=" text-orange-400">{{$message}}</span>
+                </div>
+            @enderror
             <div class="rounded-md container mx-auto max-w-2xl mt-24 bg-white/30 backdrop-blur-sm ">
                 
                 <h1 class="text-cyan-300 text-center">Ingresar al sistema</h1>
                 <hr class="border-4 border-solid border-slate-300 mb-5">
-                <p class="text-center text-lg text-orange-600 mb-4">No tiene una cuenta?
+                {{-- <p class="text-center text-lg text-orange-600 mb-4">No tiene una cuenta?
 
                     <a href="{{route('registrate')}}" class="text-slate-200 hover:text-slate-700"> Registrese aqui</a>
             
-                </p>
+                </p> --}}
                 <form action="{{route('login.login')}}" method="POST">
                     @csrf
                     <input type="email" name="email" autocomplete="off" placeholder="Email" class=" block w-full p-2 mb-3 outline-none text-gray-100 border-b-2 border-gray-200">

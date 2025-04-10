@@ -14,9 +14,9 @@ Route::get('/', function () {
     return view('login');
 })->middleware('guest')->name('login');
 
-Route::get('/registrate', function(){
-    return view('registrate');
-})->middleware('guest')->name('registrate');
+// Route::get('/registrate', function(){
+//     return view('registrate');
+// })->middleware('guest')->name('registrate');
 
 //incorrecto debo hacer la vista con un controlador porque debe ejecutar instantaneamente el metodo index para ver productos
 
@@ -55,7 +55,8 @@ Route::middleware(['auth'])->group(function(){
             Route::get('inventario/usuario/create', 'create')->name('usuario.create');
             Route::post('inventario/usuario','store')->name('usuario.store');
             Route::get('inventario/usuario/{user}/edit', 'edit')->name('usuario.edit');
-            Route::put('inventario/usuario/{user}','update')->name('usuario.update');
+            Route::patch('inventario/usuario/{user}','update')->name('usuario.update');
+            Route::patch('inventario/usuario/{user}/estado','updateEstado')->name('usuario.updateEstado');
         });
     });
     
@@ -63,7 +64,7 @@ Route::middleware(['auth'])->group(function(){
 
 Route::middleware('guest')->group(function(){
     Route::controller(LoginController::class)->group(function(){
-        Route::post('registrate', 'register')->name('registrate.register');
+        // Route::post('registrate', 'register')->name('registrate.register');
         Route::post('login', 'login')->name('login.login');
         
     });

@@ -22,6 +22,7 @@ use App\Models\User;
                 <th class="py-2 px-4 border-b">Id</th>
                 <th class="py-2 px-4 border-b max-w-md">Nombre</th>
                 <th class="py-2 px-4 border-b">Email</th>
+                <th class="py-2 px-4 border-b">Estado</th>
                 <th class="py-2 px-4 border-b">Rol</th>
                 <th class="py-2 px-4 border-b">Acciones</th>
             </tr>
@@ -33,24 +34,34 @@ use App\Models\User;
                     <td class="py-2 px-4 border-b text-center">{{$user->id}}</td>
                     <td class="py-2 px-4 border-b text-center whitespace-normal break-words max-w-md text-pretty">{{$user->name}}</td>
                     <td class="py-2 px-4 border-b text-center">{{$user->email}}</td>
+                    <td class="py-2 px-4 border-b text-center">
+                        @if ($user->estado)
+                            <span class="text-green-700">Habilitado</span>
+                        @else
+                            <span class="text-red-500">Inhabilitado</span>
+                        @endif
+                       
+                    </td>
                     <td class="py-2 px-4 border-b text-center">{{$user->role->description}}</td>
                     <td class="py-2 px-4 border-b"> 
                        
                             <div class="flex justify-center">
                                 @can('update', $user)
                                     <a href="{{route('usuario.edit',$user)}}" class="p-1 border border-gray-500 rounded bg-emerald-400 hover:bg-emerald-300"><span class="text-gray-500 font-stretch-50%">Edit</span></a>
-                                @endcan
+                                
                                 {{-- <a href="" class="p-1 border border-gray-500 rounded bg-red-400 hover:bg-red-300"><span class="text-gray-200 font-stretch-50%">Delete</span></a> --}}
-                                 <form action="" method="POST" class="ml-2">
+                                 <form action="{{route('usuario.updateEstado',$user)}}" method="POST" class="ml-2">
                                     @csrf
                                     @method('patch')
                                     {{-- <label for="estado">Estado del usuario</label> --}}
-                                    <input type="checkbox" name="estado" value="1" {{old('estado')}}>
+                                    <input type="hidden" name="estado" value="0">
+                                    <input type="checkbox" name="estado" value="1" {{$user->estado ? 'checked':''}} onchange="this.form.submit()">
                                     {{-- <button type="submit" class="p-1 border border-gray-500 rounded bg-red-400 hover:bg-red-300"><span class="text-gray-200 font-stretch-50%">delete</button> --}}
 
 
 
                                 </form>
+                                @endcan
                             </div>
                        
                     </td>
